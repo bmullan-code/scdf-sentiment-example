@@ -1,0 +1,6 @@
+__pycache__
+target/
+sentiment/.idea
+**/.creds.properties
+
+

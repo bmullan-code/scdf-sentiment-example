@@ -1,0 +1,5 @@
+applications:
+- name: sentiment
+  memory: 256M
+  buildpack: python_buildpack
+  random-route: true
