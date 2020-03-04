@@ -14,9 +14,9 @@ An example application utilizing Spring Stream for use in Spring Cloud Data Flow
 
 ## Running standalone
 
-In separare console windows ...
+In separate console windows ...
 
-1. Run rabbitmq with docker
+**1. Run rabbitmq with docker**
 ```
 docker run -it -p 5672:5672 -p 15672:15672 --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 ```
@@ -25,7 +25,7 @@ docker run -it -p 5672:5672 -p 15672:15672 --hostname my-rabbit --name some-rabb
 cd sentiment
 cf push
 ```
-Note the service endpoint eg. *sentiment-brash-wallaby.apps.stonington.stream*
+Note the service endpoint eg. *https://sentiment-brash-wallaby.apps.stonington.stream/sentiment*
 
 3. Run the log-sink application
 ```
