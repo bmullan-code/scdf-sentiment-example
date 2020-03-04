@@ -10,11 +10,15 @@ import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.Transformer;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 @SpringBootApplication
 @EnableBinding(Processor.class)
 public class SentimentProcessorApplication {
-	
+
+	@Value( "${sentiment.url}" )
+	private String sentimentUrl;
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
@@ -26,18 +30,14 @@ public class SentimentProcessorApplication {
     @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
     public Object transform(String jsonTweet) {
 
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//        String date = dateFormat.format(timestamp);
     	System.out.println("json in:"+jsonTweet);
     	JSONObject objectFromString = new JSONObject(jsonTweet);
     	
-    	String sentiment = template.postForObject("https://sentiment-brash-wallaby.apps.stonington.stream/sentiment", objectFromString.get("text"), String.class );
+    	String sentiment = template.postForObject(sentimentUrl, objectFromString.get("text"), String.class );
     	JSONObject sentimentJson = new JSONObject(sentiment);
     	System.out.println("Sentiment:"+sentiment);
     	objectFromString.put("sentiment", sentimentJson);
     	
-
-//        return "<transformed> " + jsonTweet;
     	return objectFromString.toString();
     }
 
