@@ -20,21 +20,21 @@ In separate console windows ...
 ```
 docker run -it -p 5672:5672 -p 15672:15672 --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 ```
-2. Push the sentiment analysis service
+**2. Push the sentiment analysis service**
 ```
 cd sentiment
 cf push
 ```
 Note the service endpoint eg. *https://sentiment-brash-wallaby.apps.stonington.stream/sentiment*
 
-3. Run the log-sink application
+**3. Run the log-sink application**
 ```
 cd log-sink
 mvn clean package -DskipTests=true
 mvn spring-boot:run
 ```
 
-4. Run the sentiment-processor application
+**4. Run the sentiment-processor application**
 edit the src/main/resources/application.properties file and set the sentiment.url variable from 1. eg.
 ```
 sentiment.url=https://sentiment-brash-wallaby.apps.stonington.stream/sentiment
@@ -46,7 +46,7 @@ mvn clean package -DskipTests=true
 mvn spring-boot:run --server.port=8086
 ```
 
-5. Run the twitter-source application
+**5. Run the twitter-source application**
 ```
 cd twitter-source
 mvn clean package -DskipTests=true
