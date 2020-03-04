@@ -14,7 +14,9 @@ An example application utilizing Spring Stream for use in Spring Cloud Data Flow
 
 ## Running standalone
 
-In separate console windows ...
+In separate console windows follow these steps ...
+
+**1. Run rabbitmq broker using docker**
 ```
 docker run -it -p 5672:5672 -p 15672:15672 --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 ```
