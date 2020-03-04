@@ -15,8 +15,6 @@ An example application utilizing Spring Stream for use in Spring Cloud Data Flow
 ## Running standalone
 
 In separate console windows ...
-
-**1. Run rabbitmq with docker**
 ```
 docker run -it -p 5672:5672 -p 15672:15672 --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 ```
@@ -26,6 +24,13 @@ cd sentiment
 cf push
 ```
 Note the service endpoint eg. *https://sentiment-brash-wallaby.apps.stonington.stream/sentiment*
+
+or if you want to run locally (requires python and pip are installed)
+```
+cd sentiment
+pip install -r requirements.txt
+gunicorn main:app
+```
 
 **3. Run the log-sink application**
 ```
@@ -47,6 +52,7 @@ mvn spring-boot:run --server.port=8086
 ```
 
 **5. Run the twitter-source application**
+
 This application uses the twitter api and requires a twitter developer account. Go to https://developer.twitter.com/en/apps to apply for an account and create an application. Once created edit the application.properties file with your credentials.
 ```
 twitter.consumerkey=
