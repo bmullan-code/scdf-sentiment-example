@@ -47,6 +47,15 @@ mvn spring-boot:run --server.port=8086
 ```
 
 **5. Run the twitter-source application**
+This application uses the twitter api and requires a twitter developer account. Go to https://developer.twitter.com/en/apps to apply for an account and create an application. Once created edit the application.properties file with your credentials.
+```
+twitter.consumerkey=
+twitter.consumersecret=
+twitter.accesstoken=
+twitter.tokensecret=
+```
+
+Build and run the application
 ```
 cd twitter-source
 mvn clean package -DskipTests=true
